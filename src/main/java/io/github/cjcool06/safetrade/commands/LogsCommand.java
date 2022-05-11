@@ -26,7 +26,7 @@ public class LogsCommand implements CommandExecutor {
 
     public static CommandSpec getSpec() {
         return CommandSpec.builder()
-                .description(Text.of("List player logs"))
+                .description(Text.of("Lista dos Logs dos Jogadores"))
                 .permission("safetrade.admin.logs")
                 .arguments(
                         GenericArguments.user(Text.of("target")),
@@ -38,7 +38,7 @@ public class LogsCommand implements CommandExecutor {
     public CommandResult execute(CommandSource src, CommandContext args) {
         User target = args.<User>getOne("target").get();
         User target2 = args.<User>getOne("target2").isPresent() ? args.<User>getOne("target2").get().equals(target) ? null : args.<User>getOne("target2").get() : null;
-        src.sendMessage(Text.of(TextColors.GRAY, "Grabbing SafeTrade logs, please wait..."));
+        src.sendMessage(Text.of(TextColors.GRAY, "Puxando os logs, por favor aguarde..."));
         showLogs(src, target, target2);
         return CommandResult.success();
     }
@@ -51,7 +51,7 @@ public class LogsCommand implements CommandExecutor {
                 // Legacy logs
                 if (log.getParticipantUUID() == null) {
                     contents.add(Text.builder().append(Text.builder().append(Text.of(TextColors.RED, "[", TextColors.DARK_RED, "-", TextColors.RED, "] "))
-                            .onHover(TextActions.showText(Text.of(TextColors.GRAY, "Click to delete log")))
+                            .onHover(TextActions.showText(Text.of(TextColors.GRAY, "Clique para apagar a log")))
                             .onClick(TextActions.executeCallback(dummySrc -> {
                                 DataManager.removeLog(target, log);
                                 showLogs(src, target, target2);
@@ -61,7 +61,7 @@ public class LogsCommand implements CommandExecutor {
                 // Current logs
                 else {
                     contents.add(Text.builder().append(Text.builder().append(Text.of(TextColors.RED, "[", TextColors.DARK_RED, "-", TextColors.RED, "] "))
-                            .onHover(TextActions.showText(Text.of(TextColors.GRAY, "Click to delete log")))
+                            .onHover(TextActions.showText(Text.of(TextColors.GRAY, "Clique para apagar a log")))
                             .onClick(TextActions.executeCallback(dummySrc -> {
                                 DataManager.removeLog(target, log);
                                 showLogs(src, target, target2);
@@ -72,7 +72,7 @@ public class LogsCommand implements CommandExecutor {
             List<Text> reverseContents = Lists.reverse(contents);
 
             PaginationList.builder()
-                    .title(Text.of(TextColors.GREEN, target.getName() + (target2 != null ? (" & " + target2.getName()) : "") + "'s Logs "))
+                    .title(Text.of(TextColors.GREEN, "Logs de " + target.getName() + (target2 != null ? (" & " + target2.getName()) : "")))
                     .contents(reverseContents)
                     .padding(Text.of(TextColors.GRAY, "-", TextColors.RESET))
                     .sendTo(src);

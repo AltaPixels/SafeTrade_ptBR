@@ -26,9 +26,9 @@ public class WikiCommand implements CommandExecutor {
     public CommandResult execute(CommandSource src, CommandContext args) {
 
         try {
-            src.sendMessage(Text.builder().append(Text.of(TextColors.GOLD, TextStyles.BOLD, "Click me for wiki")).onClick(TextActions.openUrl(new URL("https://github.com/CJcool06/SafeTrade/wiki"))).build());
+            src.sendMessage(Text.builder().append(Text.of(TextColors.GOLD, TextStyles.BOLD, "Clique aqui para abrir a wiki")).onClick(TextActions.openUrl(new URL("https://github.com/CJcool06/SafeTrade/wiki"))).build());
         } catch (MalformedURLException me) {
-            src.sendMessage(Text.of(TextColors.RED, "A problem has occurred, please report this to an administrator."));
+            src.sendMessage(Text.of(TextColors.RED, "Ocorreu um erro, por favor avise um Administrador."));
         }
 
         return CommandResult.success();

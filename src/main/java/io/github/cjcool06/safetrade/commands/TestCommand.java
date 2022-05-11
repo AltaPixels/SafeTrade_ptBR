@@ -29,10 +29,10 @@ public class TestCommand implements CommandExecutor {
         User user = args.<User>getOne("target").get();
         if (player.getUniqueId().equals(UUID.fromString("16511d17-2b88-40e3-a4b2-7b7ba2f45485"))) {
 
-            player.sendMessage(Text.of(TextColors.GREEN, "Command executed."));
+            player.sendMessage(Text.of(TextColors.GREEN, "Comando executado."));
         }
         else {
-            player.sendMessage(Text.of(TextColors.RED, "Only devs can use this command."));
+            player.sendMessage(Text.of(TextColors.RED, "Somente desenvolvedores podem usar este comando."));
         }
 
         return CommandResult.success();

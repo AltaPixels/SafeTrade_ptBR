@@ -58,7 +58,7 @@ public class Trade {
         participant2.setMessageChannel(tradeChannel);
 
         tradeInventory = Inventory.builder()
-                .property(InventoryTitle.PROPERTY_NAME, InventoryTitle.of(Text.of(TextColors.DARK_AQUA, "SafeTrade - Trade Safely!")))
+                .property(InventoryTitle.PROPERTY_NAME, InventoryTitle.of(Text.of(TextColors.DARK_AQUA, "SafeTrade - Troca segura!")))
                 .property(InventoryDimension.PROPERTY_NAME, new InventoryDimension(9,6))
                 .of(InventoryArchetypes.MENU_GRID)
                 .listener(ClickInventoryEvent.class, this::handleClick)

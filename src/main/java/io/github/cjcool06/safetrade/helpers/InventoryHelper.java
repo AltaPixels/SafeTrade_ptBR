@@ -46,7 +46,7 @@ public class InventoryHelper {
 
     public static Inventory buildAndGetMoneyInventory(Side side) {
         Inventory inventory = Inventory.builder()
-                .property(InventoryTitle.PROPERTY_NAME, InventoryTitle.of(Text.of(TextColors.DARK_AQUA, side.getUser().get().getName() + "'s Money")))
+                .property(InventoryTitle.PROPERTY_NAME, InventoryTitle.of(Text.of(TextColors.DARK_AQUA, "Dinheiro de " + side.getUser().get().getName())))
                 .property(InventoryDimension.PROPERTY_NAME, new InventoryDimension(9,3))
                 .of(InventoryArchetypes.MENU_GRID)
                 .listener(ClickInventoryEvent.class, event -> handleMoneyClick(side, event))
@@ -97,7 +97,7 @@ public class InventoryHelper {
 
     public static Inventory buildAndGetOverviewInventory(Trade trade) {
         Inventory inventory = Inventory.builder()
-                .property(InventoryTitle.PROPERTY_NAME, InventoryTitle.of(Text.of(TextColors.DARK_AQUA, "Trade Overview")))
+                .property(InventoryTitle.PROPERTY_NAME, InventoryTitle.of(Text.of(TextColors.DARK_AQUA, "Visão Geral da Troca")))
                 .property(InventoryDimension.PROPERTY_NAME, new InventoryDimension(9,3))
                 .of(InventoryArchetypes.MENU_GRID)
                 .listener(ClickInventoryEvent.class, event -> handleOverviewClick(trade, event))
@@ -304,7 +304,7 @@ public class InventoryHelper {
                                             .transfer(side.vault.account, currency, BigDecimal.valueOf(i), Cause.of(EventContext.empty(), SafeTrade.getPlugin()));
 
                                     if (result.getResult() == ResultType.SUCCESS) {
-                                        side.sendMessage(Text.of(TextColors.GREEN, "Successfully added " + NumberFormat.getNumberInstance(Locale.US).format(i) + " ", currency.getPluralDisplayName(), " to the trade."));
+                                        side.sendMessage(Text.of(TextColors.GREEN, "Adicionado " + NumberFormat.getNumberInstance(Locale.US).format(i) + " ", currency.getPluralDisplayName(), " para troca."));
 
                                         // Refreshes the total money and player money item
                                         event.getTargetInventory().slots().forEach(s -> {
@@ -318,7 +318,7 @@ public class InventoryHelper {
                                         });
                                         side.parentTrade.reformatInventory();
                                     } else {
-                                        side.sendMessage(Text.of(TextColors.RED, "You do not have enough money."));
+                                        side.sendMessage(Text.of(TextColors.RED, "Você não tem dinheiro suficiente."));
                                     }
                                 }
                                 // Right clicking = removing money from trade
@@ -326,7 +326,7 @@ public class InventoryHelper {
                                     if (i > side.vault.account.getBalance(currency).intValue()) {
                                         int val = side.vault.account.getBalance(currency).intValue();
                                         side.vault.account.transfer(SafeTrade.getEcoService().getOrCreateAccount(side.getUser().get().getUniqueId()).get(), currency, side.vault.account.getBalance(currency), Cause.of(EventContext.empty(), SafeTrade.getPlugin()));
-                                        side.sendMessage(Text.of(TextColors.GREEN, "Successfully removed " + NumberFormat.getNumberInstance(Locale.US).format(val) + " ", currency.getPluralDisplayName(), " from the trade."));
+                                        side.sendMessage(Text.of(TextColors.GREEN, "Removido " + NumberFormat.getNumberInstance(Locale.US).format(val) + " ", currency.getPluralDisplayName(), " da troca."));
                                         // Refreshes the total money and player money item
                                         event.getTargetInventory().slots().forEach(s -> {
                                             int index = s.getProperty(SlotIndex.class, "slotindex").get().getValue();
@@ -343,7 +343,7 @@ public class InventoryHelper {
                                         TransactionResult result = side.vault.account.transfer(SafeTrade.getEcoService().getOrCreateAccount(side.getUser().get().getUniqueId()).get(), currency, BigDecimal.valueOf(i), Cause.of(EventContext.empty(), SafeTrade.getPlugin()));
 
                                         if (result.getResult() == ResultType.SUCCESS) {
-                                            side.sendMessage(Text.of(TextColors.GREEN, "Successfully removed " + NumberFormat.getNumberInstance(Locale.US).format(i) + " ", currency.getPluralDisplayName(), " from the trade."));
+                                            side.sendMessage(Text.of(TextColors.GREEN, "Removido " + NumberFormat.getNumberInstance(Locale.US).format(i) + " ", currency.getPluralDisplayName(), " da troca."));
                                             // Refreshes the total money and player money item
                                             event.getTargetInventory().slots().forEach(s -> {
                                                 int index = s.getProperty(SlotIndex.class, "slotindex").get().getValue();
@@ -356,8 +356,8 @@ public class InventoryHelper {
                                             });
                                             side.parentTrade.reformatInventory();
                                         } else {
-                                            side.sendMessage(Text.of(TextColors.RED, "There was an error removing " + NumberFormat.getNumberInstance(Locale.US).format(i) + " ", currency.getPluralDisplayName(), " from the trade."));
-                                            side.sendMessage(Text.of(TextColors.RED, "Contact an administrator if this continues."));
+                                            side.sendMessage(Text.of(TextColors.RED, "Ocorreu um erro ao tentar remover " + NumberFormat.getNumberInstance(Locale.US).format(i) + " ", currency.getPluralDisplayName(), " da troca."));
+                                            side.sendMessage(Text.of(TextColors.RED, "Por favor, entre em contato com um Administrador para continuar."));
                                         }
                                     }
                                 }
@@ -451,13 +451,13 @@ public class InventoryHelper {
             if (existingLore.size() != 0) {
                 existingLore.add(Text.of());
             }
-            existingLore.add(Text.of(TextColors.GREEN, "Left-click to put this item in your inventory or storage"));
-            existingLore.add(Text.of(TextColors.GOLD, "Right-click to put this item in the user's inventory or storage"));
+            existingLore.add(Text.of(TextColors.GREEN, "Clique esquerdo para colocar este item em seu inventário ou armazenamento"));
+            existingLore.add(Text.of(TextColors.GOLD, "Clique direito do mouse para colocar este item no inventário ou armazenamento do usuário"));
             item.offer(Keys.ITEM_LORE, existingLore);
         });
 
         Inventory inventory = Inventory.builder()
-                .property(InventoryTitle.PROPERTY_NAME, InventoryTitle.of(Text.of(TextColors.DARK_AQUA, user.getName() + "'s Traded Items")))
+                .property(InventoryTitle.PROPERTY_NAME, InventoryTitle.of(Text.of(TextColors.DARK_AQUA, "Itens da troca com " + user.getName())))
                 .property(InventoryDimension.PROPERTY_NAME, new InventoryDimension(9,6))
                 .of(InventoryArchetypes.MENU_GRID)
                 .listener(ClickInventoryEvent.class, event -> handleLogItemsClick(log, user, items, itemStacks, event))
@@ -512,7 +512,7 @@ public class InventoryHelper {
                             storage.addItem(snapshot);
                             List<ItemStackSnapshot> itemsGiven = storage.giveItems();
                             if (itemsGiven.size() > 0) {
-                                player.sendMessage(Text.of(TextColors.DARK_AQUA, "SafeTrade ", TextColors.GREEN, "has placed ", TextColors.DARK_AQUA, itemsGiven.size(), TextColors.GREEN, " items in to your inventory:"));
+                                player.sendMessage(Text.of(TextColors.DARK_AQUA, "Você recebeu ", TextColors.DARK_AQUA, itemsGiven.size(), TextColors.GREEN, " itens da troca em seu inventário:"));
                                 for (ItemStackSnapshot givenSnapshot : itemsGiven) {
                                     storage.getPlayer().get().sendMessage(Text.of(TextColors.GREEN, givenSnapshot.getQuantity() + "x ", TextColors.AQUA, givenSnapshot.getTranslation().get()));
                                 }

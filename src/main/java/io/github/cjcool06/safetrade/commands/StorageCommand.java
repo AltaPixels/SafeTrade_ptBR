@@ -23,7 +23,7 @@ import java.util.Optional;
 public class StorageCommand implements CommandExecutor {
     public static CommandSpec getSpec() {
         return CommandSpec.builder()
-                .description(Text.of("Manipulate a player's storage"))
+                .description(Text.of("Abre o armazém do jogador"))
                 .permission("safetrade.admin.storage")
                 .arguments(
                         GenericArguments.user(Text.of("target")),
@@ -48,20 +48,20 @@ public class StorageCommand implements CommandExecutor {
             if (operation.equalsIgnoreCase("add")) {
                 Optional<ItemStack> optItem = player.getItemInHand(HandTypes.MAIN_HAND);
                 if (!optItem.isPresent()) {
-                    player.sendMessage(Text.of(TextColors.RED, "You must have the item you want to add in your hand."));
+                    player.sendMessage(Text.of(TextColors.RED, "Você deve ter estar segurando o item que deseja adicionar."));
                     return CommandResult.success();
                 }
                 storage.addItem(optItem.get().createSnapshot());
-                player.sendMessage(Text.of(TextColors.GREEN, "Successfully added item to " + user.getName() + "'s SafeTrade storage."));
+                player.sendMessage(Text.of(TextColors.GREEN, "Item adicionado ao armázem de " + user.getName() + "."));
             }
         }
 
         if (operation.equalsIgnoreCase("clear")) {
             storage.clearItems();
-            src.sendMessage(Text.of(TextColors.GREEN, "Successfully cleared " + user.getName() + "'s SafeTrade storage."));
+            src.sendMessage(Text.of(TextColors.GREEN, "Você limpou o armazém de " + user.getName() + "."));
         }
         else if (operation.equalsIgnoreCase("list")) {
-            src.sendMessage(Text.of(TextColors.GOLD, user.getName() + "'s SafeTrade Storage:"));
+            src.sendMessage(Text.of(TextColors.GOLD, "Armazém de " + user.getName() + ""));
             src.sendMessage(Text.of());
 
             for (ItemStackSnapshot snapshot : storage.getItems()) {
@@ -76,7 +76,7 @@ public class StorageCommand implements CommandExecutor {
 
         }
         else {
-            src.sendMessage(Text.of(TextColors.RED, "You must be a player to do that."));
+            src.sendMessage(Text.of(TextColors.RED, "Você deve ser um jogador para fazer isso."));
         }
 
         return CommandResult.success();

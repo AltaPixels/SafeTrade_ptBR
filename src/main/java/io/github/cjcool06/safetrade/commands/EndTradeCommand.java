@@ -15,7 +15,7 @@ import org.spongepowered.api.text.format.TextColors;
 public class EndTradeCommand implements CommandExecutor {
     public static CommandSpec getSpec() {
         return CommandSpec.builder()
-                .description(Text.of("End a trade"))
+                .description(Text.of("Encerrar a troca"))
                 .permission("safetrade.admin.end")
                 .arguments(GenericArguments.player(Text.of("target")))
                 .executor(new EndTradeCommand())
@@ -27,12 +27,12 @@ public class EndTradeCommand implements CommandExecutor {
         Trade trade = Tracker.getActiveTrade(target);
 
         if (trade == null) {
-            src.sendMessage(Text.of(TextColors.RED, "That player is not currently participating in a trade."));
+            src.sendMessage(Text.of(TextColors.RED, "Esse jogador não está atualmente em uma troca."));
             return CommandResult.success();
         }
-        trade.sendMessage(Text.of(TextColors.GRAY, "Trade force ended by " + src.getName() + "."));
+        trade.sendMessage(Text.of(TextColors.GRAY, "A troca foi encerrada por: " + src.getName() + "."));
         trade.forceEnd();
-        src.sendMessage(Text.of(TextColors.GREEN, "Force ended " + target.getName() + "'s safe trade."));
+        src.sendMessage(Text.of(TextColors.GREEN, "A troca de " + target.getName() + " foi encerrada."));
 
         return CommandResult.success();
     }

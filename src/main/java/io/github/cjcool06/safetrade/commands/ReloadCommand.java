@@ -20,9 +20,9 @@ public class ReloadCommand implements CommandExecutor {
     }
 
     public CommandResult execute(CommandSource src, CommandContext args) {
-        src.sendMessage(Text.of(TextColors.GRAY, "Reloading config..."));
+        src.sendMessage(Text.of(TextColors.GRAY, "Recarregando configuração..."));
         Config.load();
-        src.sendMessage(Text.of(TextColors.GRAY, "Config reloaded."));
+        src.sendMessage(Text.of(TextColors.GRAY, "Configuração recarregada com sucesso."));
 
         //DataManager.load();
         //src.sendMessage(Text.of(TextColors.GRAY, "Data loaded."));

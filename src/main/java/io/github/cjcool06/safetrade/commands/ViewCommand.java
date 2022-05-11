@@ -17,7 +17,7 @@ public class ViewCommand implements CommandExecutor {
 
     public static CommandSpec getSpec() {
         return CommandSpec.builder()
-                .description(Text.of("View an ongoing SafeTrade"))
+                .description(Text.of("Visualizar uma troca em andamento"))
                 .permission("safetrade.admin.view")
                 .executor(new OpenCommand())
                 .arguments(GenericArguments.user(Text.of("target")))
@@ -33,7 +33,7 @@ public class ViewCommand implements CommandExecutor {
             trade.addViewer(player, true);
         }
         else {
-            player.sendMessage(Text.of(TextColors.RED, user.getName() + " is not currently participating in a SafeTrade."));
+            player.sendMessage(Text.of(TextColors.RED, user.getName() + " não está atualmente em uma troca."));
         }
 
         return CommandResult.success();

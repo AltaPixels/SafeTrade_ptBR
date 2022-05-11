@@ -15,7 +15,7 @@ public class TradeConnectionListener {
     public void onLeave(ConnectionEvent.Left event) {
         Side side = event.side;
         if (!side.parentTrade.getState().equals(TradeState.ENDED)) {
-            event.side.sendMessage(Text.builder().append(Text.of(TextColors.GOLD, "You can resume the trade by clicking here or typing /safetrade open"))
+            event.side.sendMessage(Text.builder().append(Text.of(TextColors.GOLD, "Você pode retornar a trocar clicando aqui ou digitando /safetrade open"))
                     .onClick(TextActions.executeCallback(dummySrc -> Sponge.getCommandManager().process(side.getPlayer().get(), "safetrade open"))).build());
         }
     }

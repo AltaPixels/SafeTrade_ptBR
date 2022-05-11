@@ -16,7 +16,7 @@ public class OpenCommand implements CommandExecutor {
 
     public static CommandSpec getSpec() {
         return CommandSpec.builder()
-                .description(Text.of("Open a SafeTrade"))
+                .description(Text.of("Abrir uma troca"))
                 .permission("safetrade.common.open")
                 .executor(new OpenCommand())
                 .build();
@@ -30,7 +30,7 @@ public class OpenCommand implements CommandExecutor {
             trade.getSide(player.getUniqueId()).ifPresent(side -> side.changeInventory(InventoryType.MAIN));
         }
         else {
-            player.sendMessage(Text.of(TextColors.RED, "You are not currently participating in a SafeTrade."));
+            player.sendMessage(Text.of(TextColors.RED, "Você não está em uma troca atualmente."));
         }
 
         return CommandResult.success();

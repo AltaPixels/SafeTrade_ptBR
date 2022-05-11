@@ -25,23 +25,23 @@ public class ConnectionListener {
             List<ItemStackSnapshot> itemsGiven = storage.giveItems();
 
             if (commandsExecuted.size() > 0) {
-                player.sendMessage(Text.of(TextColors.DARK_AQUA, "SafeTrade ", TextColors.GREEN, "executed ", TextColors.DARK_AQUA, commandsExecuted.size(), TextColors.GREEN, " commands on your login:"));
+                player.sendMessage(Text.of(TextColors.DARK_AQUA, "SafeTrade ", TextColors.GREEN, "executou ", TextColors.DARK_AQUA, commandsExecuted.size(), TextColors.GREEN, " comandos em seu login:"));
                 for (CommandWrapper wrapper : commandsExecuted) {
                     player.sendMessage(Text.of(TextColors.GREEN, "- ", TextColors.AQUA, wrapper.cmd));
                 }
             }
             if (itemsGiven.size() > 0) {
-                player.sendMessage(Text.of(TextColors.DARK_AQUA, "SafeTrade ", TextColors.GREEN, "has placed ", TextColors.DARK_AQUA, itemsGiven.size(), TextColors.GREEN, " items in to your inventory:"));
+                player.sendMessage(Text.of(TextColors.DARK_AQUA, "SafeTrade ", TextColors.GREEN, "adicionou ", TextColors.DARK_AQUA, itemsGiven.size(), TextColors.GREEN, " itens em seu login:"));
                 for (ItemStackSnapshot snapshot : itemsGiven) {
                     player.sendMessage(Text.of(TextColors.GREEN, snapshot.getQuantity() + "x ", TextColors.AQUA, snapshot.getTranslation().get()));
                 }
             }
 
             if (storage.getCommands().size() > 0) {
-                player.sendMessage(Text.of(TextColors.GREEN, "You have ", TextColors.DARK_AQUA, storage.getCommands().size(), TextColors.GREEN, " commands waiting to be executed."));
+                player.sendMessage(Text.of(TextColors.GREEN, "Você tem ", TextColors.DARK_AQUA, storage.getCommands().size(), TextColors.GREEN, " comandos aguardando para serem executados."));
             }
             if (storage.getItems().size() > 0) {
-                player.sendMessage(Text.of(TextColors.GREEN, "You have ", TextColors.DARK_AQUA, storage.getItems().size(), TextColors.GREEN, " items in your storage."));
+                player.sendMessage(Text.of(TextColors.GREEN, "Você tem ", TextColors.DARK_AQUA, storage.getItems().size(), TextColors.GREEN, " itens em seu armazém."));
             }
         }).delayTicks(1).submit(SafeTrade.getPlugin());
     }

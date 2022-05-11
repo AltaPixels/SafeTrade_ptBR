@@ -67,9 +67,9 @@ public class LogUtils {
         User p0 = trade.getSides()[0].getUser().get();
         contents.add(TextSerializers.JSON.serialize(
                 Text.builder().append(Text.of(TextColors.AQUA, p0.getName()))
-                        .onHover(TextActions.showText(Text.of(TextColors.GRAY, "Click here to see " + p0.getName() + "'s extended log for this trade"))).build()));
+                        .onHover(TextActions.showText(Text.of(TextColors.GRAY, "Clique aqui para ver o registro extendido da troca com o " + p0.getName()))).build()));
         contents.add(TextSerializers.JSON.serialize(
-                Text.of(TextColors.GREEN, p0.getName() + "'s Extended Log ")));
+                Text.of(TextColors.GREEN, "Registro extendido de " + p0.getName())));
         contents.add(TextSerializers.JSON.serialize(extentedLogs[0]));
 
         contents.add(TextSerializers.JSON.serialize(Text.of(TextColors.DARK_AQUA, " & ")));
@@ -78,9 +78,9 @@ public class LogUtils {
         User p1 = trade.getSides()[1].getUser().get();
         contents.add(TextSerializers.JSON.serialize(
                 Text.builder().append(Text.of(TextColors.AQUA, p1.getName()))
-                        .onHover(TextActions.showText(Text.of(TextColors.GRAY, "Click here to see " + p1.getName() + "'s extended log for this trade"))).build()));
+                        .onHover(TextActions.showText(Text.of(TextColors.GRAY, "Clique aqui para ver o registro extendido da troca com o " + p1.getName()))).build()));
         contents.add(TextSerializers.JSON.serialize(
-                Text.of(TextColors.GREEN, p1.getName() + "'s Extended Log ")));
+                Text.of(TextColors.GREEN, "Registro extendido de " + p1.getName())));
         contents.add(TextSerializers.JSON.serialize(extentedLogs[1]));
 
 
@@ -104,29 +104,29 @@ public class LogUtils {
         Side side1 = trade.getSides()[1];
 
         // TODO: Hover over the money to see their balance: before -> after
-        builder1.append(Text.of("Money: "))
+        builder1.append(Text.of("Dinheiro: "))
                 .color(TextColors.DARK_AQUA)
                 .append(Text.builder().append(Text.of(TextColors.AQUA, side0.vault.account.getBalance(currency).intValue()))
                         .onHover(TextActions.showText(Text.of()))
                         .build())
                 .build();
-        builder2.append(Text.of("Money: "))
+        builder2.append(Text.of("Dinheiro: "))
                 .color(TextColors.DARK_AQUA)
                 .append(Text.builder().append(Text.of(TextColors.AQUA, side1.vault.account.getBalance(currency).intValue())).build())
                 .build();
 
         // TODO: Show items stats: durability
-        builder1.append(Text.of("\n" + "Items:"))
+        builder1.append(Text.of("\n" + "Itens:"))
                 .color(TextColors.DARK_AQUA)
                 .build();
-        builder2.append(Text.of("\n" + "Items:"))
+        builder2.append(Text.of("\n" + "Itens:"))
                 .color(TextColors.DARK_AQUA)
                 .build();
         for (ItemStackSnapshot snapshot : side0.vault.getAllItems()) {
             Text.Builder builder = Text.builder();
             snapshot.get(Keys.ITEM_ENCHANTMENTS).ifPresent(enchantments -> {
                 enchantments.forEach(enchantment -> {
-                    builder.append(Text.of(TextColors.DARK_AQUA, "Enchantments: "));
+                    builder.append(Text.of(TextColors.DARK_AQUA, "Encantamentos: "));
                     builder.append(Text.of(TextColors.AQUA, "\n", enchantment.getType(), " ", enchantment.getLevel()));
                 });
             });
@@ -140,7 +140,7 @@ public class LogUtils {
         for (ItemStackSnapshot snapshot : side1.vault.getAllItems()) {
             Text.Builder builder = Text.builder();
             snapshot.get(Keys.ITEM_ENCHANTMENTS).ifPresent(enchantments -> {
-                builder.append(Text.of(TextColors.DARK_AQUA, "Enchantments: "));
+                builder.append(Text.of(TextColors.DARK_AQUA, "Encantamentos: "));
                 enchantments.forEach(enchantment -> {
                     builder.append(Text.of(TextColors.AQUA, "\n", enchantment.getType(), " ", enchantment.getLevel()));
                 });

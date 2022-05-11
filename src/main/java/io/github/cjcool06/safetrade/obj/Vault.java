@@ -43,7 +43,7 @@ public class Vault {
         this.account = attemptAccountCreation();
 
         itemStorage = Inventory.builder()
-                .property(InventoryTitle.PROPERTY_NAME, InventoryTitle.of(Text.of(TextColors.DARK_AQUA, side.getPlayer().get().getName() + "'s Items")))
+                .property(InventoryTitle.PROPERTY_NAME, InventoryTitle.of(Text.of(TextColors.DARK_AQUA, "Itens de " + side.getPlayer().get().getName())))
                 .property(InventoryDimension.PROPERTY_NAME, new InventoryDimension(9,6))
                 .of(InventoryArchetypes.MENU_GRID)
                 .listener(ClickInventoryEvent.class, this::handleItemStorageClick)
@@ -320,9 +320,9 @@ public class Vault {
             }
         }
         Sponge.getScheduler().createTaskBuilder().execute(() -> {
-            side.parentTrade.sendMessage(Text.of(TextColors.RED, "Account creation failed."));
-            side.parentTrade.sendMessage(Text.of(TextColors.RED, "Force ending trade to prevent further errors."));
-            side.parentTrade.sendMessage(Text.of(TextColors.RED, "If this keeps happening, please report it to an administrator."));
+            side.parentTrade.sendMessage(Text.of(TextColors.RED, "A criação da conta falhou."));
+            side.parentTrade.sendMessage(Text.of(TextColors.RED, "Encerrando a troca para previnir erros."));
+            side.parentTrade.sendMessage(Text.of(TextColors.RED, "Se isso persistir acontecendo, por favor reporte a administração."));
             side.parentTrade.forceEnd();
         }).delayTicks(1).submit(SafeTrade.getPlugin());
 

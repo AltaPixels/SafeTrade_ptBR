@@ -31,19 +31,19 @@ public class Utils {
         Text.Builder builder1 =  Text.builder();
         Text.Builder builder2 = Text.builder();
 
-        builder1.append(Text.of("Money:"))
+        builder1.append(Text.of("Dinheiro:"))
                 .color(TextColors.DARK_AQUA)
                 .append(Text.builder().append(Text.of(TextColors.AQUA, " ", trade.getSides()[0].vault.account.getBalance(SafeTrade.getEcoService().getDefaultCurrency()).intValue())).build())
                 .build();
-        builder2.append(Text.of("Money:"))
+        builder2.append(Text.of("Dinheiro:"))
                 .color(TextColors.DARK_AQUA)
                 .append(Text.builder().append(Text.of(TextColors.AQUA, " ", trade.getSides()[1].vault.account.getBalance(SafeTrade.getEcoService().getDefaultCurrency()).intValue())).build())
                 .build();
 
-        builder1.append(Text.of("\n" + "Items:"))
+        builder1.append(Text.of("\n" + "Itens:"))
                 .color(TextColors.DARK_AQUA)
                 .build();
-        builder2.append(Text.of("\n" + "Items:"))
+        builder2.append(Text.of("\n" + "Itens:"))
                 .color(TextColors.DARK_AQUA)
                 .build();
         for (ItemStackSnapshot snapshot : trade.getSides()[0].vault.getAllItems()) {
@@ -67,7 +67,7 @@ public class Utils {
     public static Text getSuccessMessage(Trade trade) {
         Text[] texts = getTradeOverviewLore(trade);
 
-        return Text.builder("SafeTrade Overview >> ")
+        return Text.builder("Visão Geral da Troca >> ")
                 .color(TextColors.GREEN)
                 .style(TextStyles.BOLD)
                 .append(Text.builder().append(Text.of(TextColors.DARK_AQUA, trade.getSides()[0].getUser().get().getName()))

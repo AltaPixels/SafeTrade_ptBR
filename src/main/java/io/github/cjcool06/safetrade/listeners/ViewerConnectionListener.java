@@ -10,10 +10,10 @@ public class ViewerConnectionListener {
     @Listener
     public void onViewer(ViewerEvent event) {
         if (event instanceof ViewerEvent.Add) {
-            event.trade.sendMessage(Text.of(TextColors.GOLD, event.viewer.getName(), TextColors.GREEN, " is viewing the trade."));
+            event.trade.sendMessage(Text.of(TextColors.GOLD, event.viewer.getName(), TextColors.GREEN, " está visualizando a troca."));
         }
         else if (event instanceof ViewerEvent.Remove) {
-            event.trade.sendMessage(Text.of(TextColors.GOLD, event.viewer.getName(), TextColors.RED, " is no longer viewing the trade."));
+            event.trade.sendMessage(Text.of(TextColors.GOLD, event.viewer.getName(), TextColors.RED, " não está mais visualizando a troca."));
         }
     }
 }

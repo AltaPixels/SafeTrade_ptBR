@@ -12,7 +12,7 @@ public class Config {
     private static ConfigurationLoader<CommentedConfigurationNode> loader;
     private static CommentedConfigurationNode node;
 
-    public static String prefix = "&9&lSafeTrade &7&l>> &r";
+    public static String prefix = "&9&lTroca &7&l>> &r";
     public static boolean gcLogsEnabled = false;
     public static int gcLogsExpiryTime = 31;
 

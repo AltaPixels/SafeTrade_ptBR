@@ -38,10 +38,10 @@ public class TradeChannel implements MutableMessageChannel {
     @Override
     public Optional<Text> transformMessage(@Nullable Object sender, MessageReceiver recipient, Text original, ChatType type) {
         if (sender instanceof CommandSource) {
-            return Optional.of(Text.of(TextColors.AQUA, TextStyles.BOLD, "[Trade] ", TextStyles.RESET, TextColors.RESET, original));
+            return Optional.of(Text.of(TextColors.AQUA, TextStyles.BOLD, "[Troca] ", TextStyles.RESET, TextColors.RESET, original));
         }
         else {
-            return Optional.of(Text.of(TextColors.AQUA, TextStyles.BOLD, "[Trade] ", TextStyles.RESET, TextColors.RESET, original));
+            return Optional.of(Text.of(TextColors.AQUA, TextStyles.BOLD, "[Troca] ", TextStyles.RESET, TextColors.RESET, original));
         }
     }
 
